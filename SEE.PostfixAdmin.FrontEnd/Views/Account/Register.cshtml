@@ -1,0 +1,81 @@
+﻿@model SEE.PostfixAdmin.BackEnd.Common.Contracts.StartupContract
+@{
+    ViewData["Title"] = "Register";
+}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Create your first mailbox</p><hr /></div></div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <form role="form" method="post" class="form-horizontal">
+                @Html.AntiForgeryToken()
+                <div class="panel panel-default">
+                    <div class="panel-heading">Create your first mailbox</div>
+                    <div class="panel-body">
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <div>The form is not valid. Please, correct the data and try to save again.</div>
+                                <div>@Html.ValidationMessage("EXCEPTION")</div>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 col-md-2 col-sm-4 col-xs-12" for="UserName">User name:</label>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="user-name" name="UserName" placeholder="Enter user name" asp-for="UserName" />
+                                    <span class="input-group-addon">@@</span>
+                                    <input type="text" class="form-control" id="domain-name" name="DomainName" placeholder="Enter domain name" asp-for="DomainName" />
+                                </div>
+                                <div>
+                                    <span>@Html.ValidationMessageFor(m => m.UserName)</span>&nbsp;
+                                    <span>@Html.ValidationMessageFor(m => m.DomainName)</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 col-md-2 col-sm-4 col-xs-12" for="Quota">Mailbox quota:</label>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="quota" name="Quota" placeholder="Enter mailbox size (megabytes)" asp-for="Quota" />
+                                    <span class="input-group-addon">MB</span>
+                                </div>
+                                <div>
+                                    @Html.ValidationMessageFor(m => m.Quota)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 col-md-2 col-sm-4 col-xs-12" for="Password">Password:</label>
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                                <input class="form-control" type="password" name="Password" id="password" placeholder="Enter password" asp-for="Password" />
+                                <div>
+                                    @Html.ValidationMessageFor(m => m.Password)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 col-md-2 col-sm-4 col-xs-12" for="Confirm">Retype password:</label>
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
+                                <input class="form-control" type="password" name="Confirm" id="confirm" placeholder="Retype password" asp-for="Confirm" />
+                                <div>
+                                    @Html.ValidationMessageFor(m => m.Confirm)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a class="btn btn-default pull-left" asp-controller="Account" asp-action="Login">Cancel</a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <button type="submit" class="btn btn-primary pull-right">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

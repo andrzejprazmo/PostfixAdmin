@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Configuration";
+}
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Configure Postfix</p><hr /></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p>
+                <ol>
+                    <li>
+                        <div>Prepare Postfix configuration to manage virtual domains and mailboxes as described in <a href="http://www.postfix.org/VIRTUAL_README.html" target="_blank">http://www.postfix.org/VIRTUAL_README.html</a>.</div>
+                    </li>
+                    <li>
+                        <div>The contents of configuration files is as follows:</div>
+                        <ul>
+                            <li>
+                                <strong>virtual_domains</strong> file
+                                <pre>
+user = <em>[your database user]</em>
+password = <em>[your database user's password]</em>
+hosts = 127.0.0.1
+port = 5432
+dbname = postfix
+query = select dmn.dmn_name from vmail.domains dmn where dmn.dmn_name='%s'</pre>
+                            </li>
+                            <li>
+                                <strong>virtual_mailboxes</strong> file
+                                <pre>
+user = <em>[your database user]</em>
+password = <em>[your database user's password]</em>
+hosts = 127.0.0.1
+port = 5432
+dbname = postfix
+query = select dmn.dmn_name || '/' || mbx.mbx_username || '/' from vmail.mailboxes mbx join vmail.domains dmn on mbx.dmn_id=dmn.dmn_id where mbx.mbx_is_active = true and mbx.mbx_username || '@@' || dmn.dmn_name = '%s'</pre>
+                            </li>
+                            <li>
+                                <strong>virtual_aliases</strong> file
+                                <pre>
+user = <em>[your database user]</em>
+password = <em>[your database user's password]</em>
+hosts = 127.0.0.1
+port = 5432
+dbname = postfix
+query = select mbx.mbx_username || '@@' || dmn.dmn_name AS email from vmail.aliases als join vmail.mailboxes mbx on als.mbx_id = mbx.mbx_id join vmail.domains dmn on mbx.dmn_id=dmn.dmn_id where mbx.mbx_is_active = true and als.als_name='%s' and dmn.dmn_name='%s'</pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Restart your Postfix</li>
+                </ol>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Configure Dovecot</p><hr /></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ol>
+                <li>
+                    <div>Prepare Dovecot configuration to manage authentication based on a database as described in <a href="http://wiki.dovecot.org/" target="_blank">http://wiki.dovecot.org/</a>.</div>
+                </li>
+                <li>
+                    Inside your Dovecot configuration folder add new file <strong>/etc/dovecot/dovecot-pgsql.conf.ext</strong>
+                    <pre>
+driver = pgsql
+default_pass_scheme = SHA512
+connect = host=127.0.0.1 dbname=postfix user=<em>[your database user]</em> password=<em>[your database user's password]</em>
+password_query = select mbx.mbx_password as password from vmail.mailboxes mbx join vmail.domains dmn on mbx.dmn_id=dmn.dmn_id where mbx.mbx_is_active = true and mbx.mbx_username || '@@' || dmn.dmn_name = '%u'
+user_query = select '/var/vmail/' || dmn.dmn_name || '/' || mbx.mbx_username || '/' as home, '*:bytes=' || mbx.mbx_quota*1024*1024 as quota_rule from vmail.mailboxes mbx join vmail.domains dmn on mbx.dmn_id=dmn.dmn_id where mbx.mbx_username || '@@' || dmn.dmn_name = '%u'</pre>
+                </li>
+                <li>
+                    Open sql authentication file <strong>/etc/dovecot/conf.d/auth-sql.conf.ext</strong> for editing and find and modify following lines:
+                    <pre>
+passdb {
+  driver = sql
+  args = /etc/dovecot/dovecot-pgsql.conf.ext
+}
+userdb {
+  driver = sql
+  args = /etc/dovecot/dovecot-pgsql.conf.ext
+}</pre>
+                </li>
+                <li>Restart your Dovecot</li>
+            </ol>
+        </div>
+    </div>
+</div>

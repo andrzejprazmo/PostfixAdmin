@@ -1,0 +1,21 @@
+﻿@model SEE.PostfixAdmin.BackEnd.Common.Contracts.MailboxContract
+<div class="modal fade" id="remove-mailbox" role="dialog" aria-labelledby="myModalLabel" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content" asp-controller="Mailbox" asp-action="Remove">
+            @Html.AntiForgeryToken()
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Please confirm.</h4>
+            </div>
+            <div class="modal-body">
+                <p>Warning! You are trying to remove mailbox <strong>@Model.UserName<span>@@</span>@Model.DomainName</strong>. All aliases assigned to this mailbox will be removed, too. Do you want to continue?</p>
+            </div>
+            <input type="hidden" name="Id" asp-for="Id" />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Remove</button>
+            </div>
+        </form>
+    </div>
+</div>
+

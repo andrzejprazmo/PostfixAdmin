@@ -1,0 +1,50 @@
+﻿@model SEE.PostfixAdmin.BackEnd.Common.Contracts.StatsContract
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Info</p><hr /></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p class="text-justify">
+                This application was created to manage <strong>Postfix</strong> virtual mail accounts. Before you start, please set up your <strong>Postfix</strong> and <strong>Dovecot</strong>
+                configuration files so both can accept informations about domains and mailboxes from the <strong>PostgreSQL</strong> database. More information you can find here: <a asp-controller="Home" asp-action="Configuration">configure your Postfix and Dovecot</a>
+            </p>
+            <p class="text-justify">
+                More information about <strong>Postfix</strong> and <strong>Dovecot</strong> configuration you can find here:
+                <ul>
+                    <li><a href="http://www.postfix.org/VIRTUAL_README.html" target="_blank">http://www.postfix.org/VIRTUAL_README.html</a></li>
+                    <li><a href="http://wiki.dovecot.org/" target="_blank">http://wiki.dovecot.org/</a></li>
+                </ul>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Stats</p><hr /></div>
+        <div class="col-lg-6 col-md-7 col-sm-9 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>Number of domains</td>
+                            <td class="text-right"><strong>@Model.NumberOfDomains</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Number of mailboxes</td>
+                            <td class="text-right"><strong>@Model.NumberOfMailboxes</strong></td>
+                        </tr>
+                    </table>
+                    <hr/>
+                    <div class="text-right">
+                        <a class="btn btn-success" asp-controller="Domain" asp-action="Create">Add domain</a>
+                        <a class="btn btn-success" asp-controller="Mailbox" asp-action="Create">Add mailbox</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

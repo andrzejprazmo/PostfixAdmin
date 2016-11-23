@@ -1,0 +1,58 @@
+﻿@model SEE.PostfixAdmin.BackEnd.Common.Contracts.DomainContract
+@{
+    ViewData["Title"] = "Domain details";
+}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Domain details</p><hr /></div></div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table class="table">
+                <tr>
+                    <td>Domain name:</td>
+                    <td><strong>@Model.Name</strong></td>
+                </tr>
+                <tr>
+                    <td>Created by:</td>
+                    <td><strong>@Model.CreateDate @Model.CreatedBy</strong></td>
+                </tr>
+                <tr>
+                    <td>Updated by:</td>
+                    <td><strong>@Model.UpdateDate  @Model.UpdatedBy</strong></td>
+                </tr>
+                <tr>
+                    <td>Mailboxes:</td>
+                    <td>
+                        @if (Model.Mailboxes.Count == 0)
+                        {
+                            <div class="text-center"><em>No mailboxes found</em></div>
+                        }
+                        else
+                        {
+                            <table class="table table-bordered">
+                                @for (int i = 0; i < Model.Mailboxes.Count(); i++)
+                                {
+                                    <tr>
+                                        <td style="width:1%;">@(i + 1)</td>
+                                        <td>@Model.Mailboxes[i].UserName<span>@@</span>@Model.Mailboxes[i].DomainName</td>
+                                        <td style="width:1%;"><a class="btn btn-default" asp-controller="Mailbox" asp-action="Details" asp-route-id="@Model.Mailboxes[i].Id"><i class="glyphicon glyphicon-folder-open"></i></a></td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                        <div class="text-right">
+                            <a class="btn btn-info" asp-controller="Mailbox" asp-action="Create" asp-route-DomainId="@Model.Id">Add mailbox</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="btn btn-default" asp-controller="Domain" asp-action="Index">Back to list</a></td>
+                    <td class="text-right">
+                        <a class="btn btn-danger" asp-controller="Domain" asp-action="Remove" asp-route-id="@Model.Id" data-toggle="modal" data-target="#remove-domain">Remove domain</a>
+                        <a class="btn btn-info" asp-controller="Domain" asp-action="Edit" asp-route-id="@Model.Id">Edit domain</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.Partial("Remove")

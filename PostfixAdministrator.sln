@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SEE.PostfixAdmin.BackEnd.BLL", "SEE.PostfixAdmin.BackEnd.BLL\SEE.PostfixAdmin.BackEnd.BLL.xproj", "{CDEAA00F-8D25-47A6-9BCE-4EDAD296B106}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SEE.PostfixAdmin.FrontEnd", "SEE.PostfixAdmin.FrontEnd\SEE.PostfixAdmin.FrontEnd.xproj", "{2DFB462C-8678-4872-ADB9-E9CD0EE36C69}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SEE.PostfixAdmin.BackEnd.Common", "SEE.PostfixAdmin.BackEnd.Common\SEE.PostfixAdmin.BackEnd.Common.xproj", "{118E40FC-5BAC-41A2-9CDA-2FBFFD6270C0}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SEE.PostfixAdmin.BackEnd.Infrastructure", "SEE.PostfixAdmin.BackEnd.Infrastructure\SEE.PostfixAdmin.BackEnd.Infrastructure.xproj", "{1FCF34B4-6F93-4DDF-BAAD-E4404017B2EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EEA60CF7-2D2D-4463-8104-A87123482167}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SEE.PostfixAdmin.BackEnd.BLL.UnitTest", "SEE.PostfixAdmin.BackEnd.BLL.UnitTest\SEE.PostfixAdmin.BackEnd.BLL.UnitTest.xproj", "{6C2C65F6-5464-470C-AB64-CF7BCDB37970}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDEAA00F-8D25-47A6-9BCE-4EDAD296B106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDEAA00F-8D25-47A6-9BCE-4EDAD296B106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDEAA00F-8D25-47A6-9BCE-4EDAD296B106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDEAA00F-8D25-47A6-9BCE-4EDAD296B106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DFB462C-8678-4872-ADB9-E9CD0EE36C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFB462C-8678-4872-ADB9-E9CD0EE36C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFB462C-8678-4872-ADB9-E9CD0EE36C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFB462C-8678-4872-ADB9-E9CD0EE36C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{118E40FC-5BAC-41A2-9CDA-2FBFFD6270C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{118E40FC-5BAC-41A2-9CDA-2FBFFD6270C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{118E40FC-5BAC-41A2-9CDA-2FBFFD6270C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{118E40FC-5BAC-41A2-9CDA-2FBFFD6270C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FCF34B4-6F93-4DDF-BAAD-E4404017B2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FCF34B4-6F93-4DDF-BAAD-E4404017B2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FCF34B4-6F93-4DDF-BAAD-E4404017B2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FCF34B4-6F93-4DDF-BAAD-E4404017B2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C2C65F6-5464-470C-AB64-CF7BCDB37970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2C65F6-5464-470C-AB64-CF7BCDB37970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2C65F6-5464-470C-AB64-CF7BCDB37970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2C65F6-5464-470C-AB64-CF7BCDB37970}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6C2C65F6-5464-470C-AB64-CF7BCDB37970} = {EEA60CF7-2D2D-4463-8104-A87123482167}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,49 @@
+﻿body
+{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px)
+{
+    /* Hide captions */
+    .carousel-caption
+    {
+        display: none;
+    }
+}
+
+.input-validation-error
+{
+    border-color: #a94442;
+}
+
+.field-validation-error
+{
+    color: #a94442;
+    font-size: 90%;
+}
+
+/* Override bootstrap */
+footer
+{
+    border-top: solid 1px #eee;
+    margin: 1em 0;
+    padding: .1em 0;
+}
+footer .copyright
+{
+    text-align:right;
+    font-style:italic;
+    font-size:90%;
+}

@@ -1,0 +1,26 @@
+{
+    "version": "1.0.0-*",
+
+  "dependencies": {
+    "NUnit": "3.4.1",
+    "dotnet-test-nunit": "3.4.0-beta-2",
+    "SEE.PostfixAdmin.BackEnd.BLL": "1.0.0-*",
+    "SEE.PostfixAdmin.BackEnd.Common": "1.0.0-*",
+    "SEE.PostfixAdmin.BackEnd.Infrastructure": "1.0.0-*",
+    "Moq": "4.6.38-alpha"
+  },
+
+    "testRunner": "nunit",
+
+    "frameworks": {
+      "netcoreapp1.0": {
+        "imports": "portable-net45+win8",
+        "dependencies": {
+          "Microsoft.NETCore.App": {
+            "version": "1.0.0-*",
+            "type": "platform"
+          }
+        }
+      }
+    }
+}

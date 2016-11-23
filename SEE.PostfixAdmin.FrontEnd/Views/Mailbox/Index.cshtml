@@ -1,0 +1,99 @@
+﻿@model SEE.PostfixAdmin.BackEnd.Common.List.DataResponse<SEE.PostfixAdmin.BackEnd.Common.Requests.MailboxRequest, SEE.PostfixAdmin.BackEnd.Common.Contracts.MailboxContract>
+@{
+    ViewData["Title"] = "Mailboxes";
+    int counter = 0;
+}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">List of mailboxes</p><hr /></div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"><a asp-controller="Mailbox" asp-action="Create" class="btn btn-primary" title="Add new domain...">Add mailbox</a></div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+            <form role="form" class="form-inline pull-right">
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search" size="32" name="UserName" asp-for="Request.UserName">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            @if (Model.Request.TotalRecords > 0)
+            {
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width:1%;">#</th>
+                            <th>User name</th>
+                            <th>Domain name</th>
+                            <th class="text-nowrap">Is active</th>
+                            <th class="text-nowrap">Is administrator</th>
+                            <th>Number of aliases</th>
+                            <th>Created by</th>
+                            <th>Updated by</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.List)
+                {
+                    counter++;
+                            <tr>
+                                <td>@counter</td>
+                                <td>@item.UserName<span>@@</span>@item.DomainName</td>
+                                <td>@item.DomainName</td>
+                                <td class="text-center">@Html.DisplayFor(m => item.IsActive)</td>
+                                <td class="text-center">@Html.DisplayFor(m => item.IsAdmin)</td>
+                                <td class="text-right">@item.AliasesCount</td>
+                                <td>
+                                    <span>@item.CreateDate</span>
+                                    <span> </span>
+                                    <span>@item.CreatedBy</span>
+                                </td>
+                                <td>
+                                    <span>@item.UpdateDate</span>
+                                    <span> </span>
+                                    <span>@item.UpdatedBy</span>
+                                </td>
+                                <td class="text-nowrap" style="width:1%;">
+                                    <a class="btn btn-default" title="Edit domain..." asp-controller="Mailbox" asp-action="Details" asp-route-id="@item.Id"><i class="glyphicon glyphicon-folder-open"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                @if (Model.Request.IsPaged)
+                {
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <ul class="pagination pull-right">
+                            @for (int i = 0; i < Model.Request.NumOfPages; i++)
+                            {
+                                if (Model.Request.PageIndex == i)
+                                {
+                                    <li class="active"><a href="#" class="active">@(i + 1)</a></li>
+                                }
+                                else
+                                {
+                                    <li><a class="active" asp-controller="Domain" asp-action="Index" asp-route-PageIndex="@i">@(i + 1)</a></li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        Records from <b>@(Model.Request.PageIndex * Model.Request.PageSize + 1)</b> to <b>@Model.Request.RecordsOnPage</b>. Total: <b>@Model.Request.TotalRecords</b>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="alert alert-info">Not found any records with these criteria.</div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

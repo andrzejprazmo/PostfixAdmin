@@ -1,0 +1,61 @@
+﻿@model SEE.PostfixAdmin.BackEnd.Common.Contracts.AliasContract
+@{
+    ViewData["Title"] = "Create new alias";
+}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="lead">Create new alias</p><hr /></div></div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <form role="form" method="post" class="form-horizontal">
+                @Html.AntiForgeryToken()
+                <div class="panel panel-default">
+                    <div class="panel-heading">Create new alias</div>
+                    <div class="panel-body">
+                        @if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                <div>The form is not valid. Please, correct the data and try to save again.</div>
+                                <div>@Html.ValidationMessage("EXCEPTION")</div>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Target email:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="domain-name" name="MailboxName" size="164" disabled="disabled" value="@Model.UserName@@@Model.DomainName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2 col-md-2 col-sm-4 col-xs-12" for="email">Alias name:</label>
+                            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-12">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="domain-name" name="Name" placeholder="Enter alias" asp-for="Name" size="164">
+                                    <span class="input-group-addon">@@</span>
+                                    <input type="text" class="form-control" id="domain-name" name="DomainName" asp-for="DomainName" size="164" disabled="disabled">
+                                </div>
+                                
+                                <div>
+                                    @Html.ValidationMessageFor(m => m.Name)
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a class="btn btn-default pull-left" asp-controller="Mailbox" asp-action="Details" asp-route-id="@Model.MailboxId">Cancel</a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <button type="submit" class="btn btn-primary pull-right">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="MailboxId" asp-for="MailboxId" />
+                <input type="hidden" name="UserName" asp-for="UserName" />
+                <input type="hidden" name="DomainName" asp-for="DomainName" />
+            </form>
+        </div>
+    </div>
+</div>
+

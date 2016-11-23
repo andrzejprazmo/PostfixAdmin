@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.EntityFrameworkCore": "1.0.1",
+    "Microsoft.Extensions.Configuration.Abstractions": "1.0.0",
+    "NETStandard.Library": "1.6.0",
+    "SEE.PostfixAdmin.BackEnd.Common": "1.0.0-*",
+    "System.Security.Cryptography.Algorithms": "4.2.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
